@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "Show Plan Customer";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*Button trigger modal*@
+@*<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        New Coverage
+    </button>*@
+<h4>Filter</h4>
+
+
+@{
+    if (@Request.Cookies["Role"].Value == "HEAD")
+    {
+        <div class="row">
+            <div class="col-md-2">
+
+                <select class="form-select RSM" aria-label="Default select example ">
+                </select>
+
+            </div>
+            <div class="col-md-2">
+                <select class="form-select ASM" aria-label="Default select example ">
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select PAM" aria-label="Default select example ">
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select MONTH" aria-label="Default select example ">
+                    <option value="">MONTH</option>
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i"> @i </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary" onclick="location.reload()">CLEAR RESET</button>
+            </div>
+        </div>
+    }
+    else if (@Request.Cookies["Role"].Value == "RSM")
+    {
+        <div class="row">
+
+            <div class="col-md-2">
+                <select class="form-select ASM" aria-label="Default select example ">
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select PAM" aria-label="Default select example ">
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select class="form-select MONTH" aria-label="Default select example ">
+                    <option value="">MONTH</option>
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i"> @i </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary" onclick="location.reload()">CLEAR RESET</button>
+            </div>
+        </div>
+    }
+    else if (@Request.Cookies["Role"].Value == "ASM")
+    {
+        <div class="row">
+
+
+            <div class="col-md-2">
+                <select class="form-select PAM" aria-label="Default select example ">
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select class="form-select MONTH" aria-label="Default select example ">
+                    <option value="">MONTH</option>
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i"> @i </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary" onclick="location.reload()">CLEAR RESET</button>
+            </div>
+        </div>
+    }
+}
+
+
+
+<hr />
+
+@*<img src="http://10.60.1.5:90/images/logo.png" alt="Alternate Text" />*@
+<div class="table-responsive">
+
+
+    <table class="table table-bordered ListCoverage">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Outlet</th>
+                <th>Time</th>
+                <th>Week</th>
+                <th>Month</th>
+                <th>PAM</th>
+                <th>ASM</th>
+                <th>RSM</th>
+                <th>Status</th>
+                <th>Reason No Call</th>
+            </tr>
+        </thead>
+
+    </table>
+</div>
+<!-- Modal New Customer -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">List Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label">Customer</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">dr. Ali Sungkar, SpPD</option>
+                    <option value="2">dr. Muchtar Adi, SpA (K)</option>
+                    <option value="3">dr. Sri Rezeki</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add Coverage</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title CustomerName" id="exampleModalLabel">Detail Coverage</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row maps">
+
+                    <iframe width="100%"
+                            height="270"
+                            frameborder="0"
+                            scrolling="no"
+                            marginheight="0"
+                            marginwidth="0"
+                            src="https://maps.google.com/maps?q=-6.2022012,106.9134374&hl=es&z=14&amp;output=embed">
+                    </iframe>
+
+                </div>
+                <h3 style="background-color:grey;color:white;padding:10;margin-top:20px;margin-bottom:20px;font-size:18px;padding:10px;">Detail Call</h3>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Call Type</label> <br />
+                        <b class="CallType">-</b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Outlet</label> <br />
+                        <b class="Outlet">-</b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Time</label> <br />
+                        <b class="Time">-</b>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-4">
+                        <label>Month</label> <br />
+                        <b class="Month">-</b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Product</label> <br />
+                        <b class="Product">-</b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Remarks</label> <br />
+                        <b class="Remarks">-</b>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-8">
+                        <label>Activity</label> <br />
+                        <b class="Activity">-</b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Image</label> <br />
+                        <div class="ImageCustomer"></div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>

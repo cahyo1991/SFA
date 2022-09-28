@@ -1,0 +1,246 @@
+﻿
+@{
+    Layout = null;
+    string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
+    Request.ApplicationPath.TrimEnd('/');
+    string Code = Request.Cookies["Code"].Value;
+    string Role = Request.Cookies["Role"].Value;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+        <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+            <meta name="description" content="" />
+            <meta name="author" content="" />*@
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - SFA</title>
+
+    <link href="~/Content/datatable.css" rel="stylesheet" />
+    <link href="~/bootstrapadmin/css/styles.css" rel="stylesheet" />
+    <script src="~/Scripts/AllMin.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="~/Content/jqueryui.css">
+    <link href="~/Content/datatablemin.css" rel="stylesheet" />
+
+    @*<link rel="stylesheet" href="/resources/demos/style.css">*@
+    <script src="~/Scripts/jquery1124.js"></script>
+    <script src="~/Scripts/jqueryui2.js"></script>
+
+
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="@baseUrl">SFA</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    @*<li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>*@
+                    <li><a class="dropdown-item" href="~/Login/Logout">Logout</a></li>
+                    <li><a class="dropdown-item" href="~/Customer/UpdatePassword">Update Password</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+
+
+                        <div class="sb-sidenav-menu-heading">Menu</div>
+
+                        <a class="nav-link" href="~/Customer/Dashboard">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Customer
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="~/Customer">Coverage Customer</a>
+                                <a class="nav-link" href="~/Customer/MasterCustomer">Master Customer</a>
+                                <a class="nav-link" href="~/Customer/CallCustomer">Call Customer</a>
+                                <a class="nav-link" href="~/Customer/ShowPlanCustomer">Plan Customer</a>
+                            </nav>
+                        </div>
+                        @if (@Request.Cookies["Role"].Value == "ASM" || @Request.Cookies["Role"].Value == "RSM")
+                        {
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts_1" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-clock"></i></div>
+                                Pending Approval
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts_1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="~/Customer/PendingCoverageCustomer">New Coverage Customer</a>
+                                    <a class="nav-link" href="~/Customer/PendingNewCustomer">New Customer</a>
+                                    <a class="nav-link" href="~/Customer/PlanCustomer">Plan</a>
+                                </nav>
+                            </div>
+                        }
+
+
+
+                        <a class="nav-link" href="~/Customer/BirthdayCustomer">
+                            <div class="sb-nav-link-icon"><i class="fas fa-birthday-cake"></i></div>
+                            Birthday Customer
+                        </a>
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as: @Request.Cookies["Code"].Value </div>
+                    @Request.Cookies["Name"].Value - @Request.Cookies["Role"].Value
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">@ViewBag.Title</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">@ViewBag.Title</li>
+                    </ol>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Content
+                        </div>
+                        <div class="card-body">
+
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; <a href="https://www.id.etanabiotech.com/" target="_blank">PT Etana Biotechnologies Indonesia</a> </div>
+                        <div>
+                            @*<a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>*@
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        //$(function () {
+        //    $(".datepicker").datepicker();
+        //});
+
+        function alertError(Msg, Ref = "#") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: Msg
+            }).then((result) => window.location.href = Ref)
+        }
+
+        function alertSuccess(Msg, Ref = "#") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Ok...',
+                text: Msg
+            }).then((result) => window.location.href = Ref)
+            }
+
+            function CloseLoading() {
+                swal.close()
+            }
+
+        function AlertLoading() {
+            var timerInterval;
+            Swal.fire({
+                title: 'Loading .....',
+                html: ' Jangan Menutup Tab selama proses data berlangsung !.',
+                //timer: 5000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+
+                    timerInterval = setInterval(() => {
+                        const content = Swal.getContent()
+                        if (content) {
+                            const b = content.querySelector('b')
+                            if (b) {
+                                b.textContent = Swal.getTimerLeft()
+                            }
+
+                        }
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        }
+
+
+
+        var baseUrl = "@baseUrl";
+        var baseUrlAPI = "https://apisfa.azurewebsites.net/";
+        var baseUrlImage = baseUrlAPI+"/Images/";
+        var Code = "@Code";
+        var Role = "@Role";
+        var ApiImage = baseUrlAPI + "/Images/";
+    </script>
+    <script src="~/Scripts/boostrapbundel.js" crossorigin="anonymous"></script>
+    <script src="~/bootstrapadmin/js/scripts.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="~/bootstrapadmin/assets/demo/chart-area-demo.js"></script>
+        <script src="~/bootstrapadmin/assets/demo/chart-bar-demo.js"></script>*@
+    @*<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>*@
+
+
+    <script type="text/javascript" src="~/Scripts/SweetAlert.js"></script>
+    <script src="~/Scripts/datatableminn.js"></script>
+
+    <script src="~/bootstrapadmin/js/datatables-simple-demo.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="~/Scripts/CustomerApps/@ViewBag.javascript"></script>
+
+</body>
+</html>

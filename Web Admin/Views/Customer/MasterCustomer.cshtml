@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "Master Customer";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*Button trigger modal*@
+@*<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        New Coverage
+    </button>*@
+
+
+
+<div class="table-responsive">
+
+
+    <table class="table table-bordered ListCustomer">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Specialty</th>
+                <th>Segmentation</th>
+                <th>Customer Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+    </table>
+</div>
+<!-- Modal New Customer -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">List Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label class="form-label">Customer</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">dr. Ali Sungkar, SpPD</option>
+                    <option value="2">dr. Muchtar Adi, SpA (K)</option>
+                    <option value="3">dr. Sri Rezeki</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add Coverage</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title CustomerName" id="exampleModalLabel">Detail Coverage</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row ImageCustomer">
+
+                    
+
+                </div>
+                <h3 style="background-color:grey;color:white;padding:10;margin-top:20px;margin-bottom:20px;font-size:18px;padding:10px;">Personal Information</h3>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Specialization</label> <br />
+                        <b class="Specialization"></b>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Customer Type</label> <br />
+                        <b class="CustomerType"></b>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Phone Number</label> <br />
+                        <b class="PhoneNumber"></b>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Email</label> <br />
+                        <b class="Email"></b>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top:10px;">
+
+                    <div class="col-md-3">
+                        <label>Segmentation</label> <br />
+                        <b class="Segmentation"></b>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Date Of Birth</label> <br />
+                        <b class="DOB"></b>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Religion</label> <br />
+                        <b class="Religion"></b>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Hobby</label> <br />
+                        <b class="Hobby"></b>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-3">
+                        <label>Area</label> <br />
+                        <b class="Area"></b>
+                    </div>
+                    <div class="col-md-9">
+                        <label>Address</label> <br />
+                        <b class="Address"></b>
+                    </div>
+                </div>
+
+                <h3 style="background-color:grey;color:white;padding:10;margin-top:20px;margin-bottom:20px;font-size:18px;padding:10px;">Practice Information</h3>
+                <div class="row" style="margin-top:10px;">
+
+                    <div class="col-md-4">
+                        <label>Outlet 1</label> <br />
+                        <b class="Outlet1"></b>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Outlet 2</label> <br />
+                        <b class="Outlet2"></b>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Outlet 3</label> <br />
+                        <b class="Outlet3"></b>
+                    </div>
+
+
+                </div>
+
+                <h3 style="background-color:grey;color:white;padding:10;margin-top:20px;margin-bottom:20px;font-size:18px;padding:10px;">Family Information</h3>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-4">
+                        <label>Date Of Marriage</label> <br />
+                        <b class="DOM"></b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Spouse Name</label> <br />
+                        <b class="SpouseName"></b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Date Of Birth Spouse</label> <br />
+                        <b class="DOBSpouse"></b>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-4">
+                        <label>Date Of Birth Child 1</label> <br />
+                        <b class="DOBC1"></b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Child Name 1</label> <br />
+                        <b class="CN1"></b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Note</label> <br />
+                        <b class="Note"></b>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-4">
+                        <label>Date Of Birth Child 2</label> <br />
+                        <b class="DOBC2"></b>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Child Name 2</label> <br />
+                        <b class="CN2"></b>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>

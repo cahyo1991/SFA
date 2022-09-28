@@ -1,0 +1,155 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-md-4">
+        <label class="form-label">Customer Name</label>
+        <input type="text" name="name" value="" class="form-control" required />
+        <label class="form-label">Phone Number</label>
+        <input type="number" name="name" value="" class="form-control" required />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Date Of Birth</label>
+        <input type="date" name="name" value="" class="form-control" />
+        <label class="form-label">Email</label>
+        <input type="email" name="name" value="" class="form-control" required />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Customer Type</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">Scientific</option>
+            <option value="2">Business</option>
+            <option value="3">Relationship</option>
+        </select>
+        <label class="form-label">Specialty</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">SpPD KGH</option>
+            <option value="2">SpOG</option>
+            <option value="3">Nurse</option>
+        </select>
+    </div>
+
+</div>
+<br />
+<label> <b> <i>Address</i> </b> </label>
+<hr />
+<div class="row">
+
+    <div class="col-md-8" style="padding:20px;">
+
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="9"></textarea>
+
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Province</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">Jakarta</option>
+            <option value="2">Jawa Barat</option>
+            <option value="3">Jawa Tengah</option>
+        </select>
+        <label class="form-label">District</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">Jakarta Selatan</option>
+            <option value="2">Jakarta Timur</option>
+            <option value="3">Jakarta Barat</option>
+        </select>
+        <label class="form-label">Village</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">Jagakarsa</option>
+            <option value="2">Lenteng Agung</option>
+            <option value="3">Cipedak</option>
+        </select>
+    </div>
+</div>
+
+
+<label> <b> <i>Outlet Customer</i> </b> </label>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">Outlet 1</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">(1234) RS Fatmawati</option>
+            <option value="2">(1235) RS Pasar Rebo</option>
+            <option value="1">(1234) RS Andhika</option>
+            <option value="2">(1235) RS Sibroh</option>
+        </select>
+        <label class="form-label">Hobby</label>
+        <input type="text" name="name" value="" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Outlet 2</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">(1234) RS Fatmawati</option>
+            <option value="2">(1235) RS Pasar Rebo</option>
+            <option value="1">(1234) RS Andhika</option>
+            <option value="2">(1235) RS Sibroh</option>
+        </select>
+        <label class="form-label">Religion</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">Islam</option>
+            <option value="2">Christian</option>
+            <option value="3">Budhist</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Outlet 3</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">(1234) RS Fatmawati</option>
+            <option value="2">(1235) RS Pasar Rebo</option>
+            <option value="1">(1234) RS Andhika</option>
+            <option value="2">(1235) RS Sibroh</option>
+        </select>
+    </div>
+</div>
+<br />
+<label> <b> <i>Family Information</i> </b> </label>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">Date Of Marriage</label>
+        <input type="date" name="name" value="" class="form-control" />
+        <label class="form-label">Note</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Husband's / Wife Name</label>
+        <input type="text" name="name" value="" class="form-control" />
+        <label class="form-label">Child's Name 1</label>
+        <input type="text" name="name" value="" class="form-control" />
+        <label class="form-label">Child's Name 2</label>
+        <input type="text" name="name" value="" class="form-control" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Date Of Birth Husband's / Wife</label>
+        <input type="date" name="name" value="" class="form-control" />
+        <label class="form-label">Date Of Birth Child 1</label>
+        <input type="date" name="name" value="" class="form-control" />
+        <label class="form-label">Date Of Birth Child 2</label>
+        <input type="date" name="name" value="" class="form-control" />
+    </div>
+</div>
+<br /><br />
+
+@if (@Request["TypeForm"].ToString() == "Add")
+{
+<a href="~/Customer/MasterCustomer" class="btn btn-lg btn-success"> SAVE </a>
+} else if (@Request["TypeForm"].ToString() == "Update")
+            {
+<a href="~/Customer" class="btn btn-lg btn-success"> UPDATE </a>
+            }
+
+
